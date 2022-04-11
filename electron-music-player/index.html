@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+<!--  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />-->
+  <script src="https://unpkg.com/vue@2"></script>
+</head>
+<body>
+<h1>Hello World!222</h1>
+<p>
+  We are using Node.js <span id="node-version"></span>,
+  Chromium <span id="chrome-version"></span>,
+  and Electron <span id="electron-version"></span>.
+</p>
+
+<div id="app">
+  {{ message }}
+</div>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue!'
+    }
+  })
+</script>
+</body>
+</html>

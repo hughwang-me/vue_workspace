@@ -1,0 +1,13 @@
+{
+  "name": "electron-music-player",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --watch main.js --exec 'electron .'"
+  },
+  "devDependencies": {
+    "electron": "^18.0.3",
+    "nodemon": "^2.0.15"
+  }
+}
