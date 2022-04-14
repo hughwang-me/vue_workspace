@@ -4,7 +4,7 @@
         placeholder="输入任务名称"
         v-model="name"
       @keydown.enter="addTask"/>
-    <el-button type="primary" plain @click="addTask">添加</el-button>
+    <el-button type="primary" plain @click="addTask" style="margin-left: 20px">添加</el-button>
   </div>
 </template>
 
