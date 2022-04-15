@@ -19,10 +19,12 @@ export default {
   //     console.log('添加任务 : ' + name)
   //   }
   // },
-  setup() {
+  setup(props , ctx) {
     const name = ref('');
     let addTask = function (){
       console.log('添加任务 : ' + name.value)
+      ctx.emit('add' , name.value);
+      name.value = '';
     };
     return {
       name,

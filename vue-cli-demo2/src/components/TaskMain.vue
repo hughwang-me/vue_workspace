@@ -14,17 +14,16 @@ import {useStore} from 'vuex';
 
 export default {
   name: "TaskHeader",
-  methods: {
-    deleteItem(index) {
-      console.log('删除任务 : ' + index)
-    }
-  },
-  setup() {
+  setup(props , ctx) {
     let store = useStore();
-    console.log("store -> " + JSON.stringify(store))
-    let list = store.state.todoList
+    let list = store.state.todoList;
+    let deleteItem = (index) =>{
+      console.log('删除的item :' + index)
+      ctx.emit('deleteItem' , index);
+    }
     return {
-      list
+      list,
+      deleteItem
     }
   }
 
