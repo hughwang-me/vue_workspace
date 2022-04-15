@@ -19,7 +19,7 @@ export default {
     let list = store.state.todoList;
     let deleteItem = (index) =>{
       console.log('删除的item :' + index)
-      ctx.emit('deleteItem' , index);
+      ctx.emit('delete' , index);
     }
     return {
       list,

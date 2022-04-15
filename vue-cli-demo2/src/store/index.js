@@ -19,10 +19,12 @@ export default createStore({
     },
     mutations: {
         addTask(state, todo) {
+            console.log('store -> addTask : ' + todo)
             state.todoList.push(todo)
         },
-        deleteTask(state, todo) {
-            state.todoList.splice(todo, 1)
+        deleteTask(state, index) {
+            console.log('store -> deleteTask : ' + index)
+            state.todoList.splice(index,1)
         },
         clearTask(state, todo) {
             state.todoList = todo

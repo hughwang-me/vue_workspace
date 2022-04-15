@@ -1,8 +1,8 @@
 <template>
 首页
   <TaskHeader @add="addTask"/>
-  <TaskMain @delete="de"/>
-  <TaskFooter/>
+  <TaskMain @delete="deleteTask"/>
+  <TaskFooter :list="list"/>
   <CommonFooter/>
 </template>
 
@@ -32,16 +32,16 @@ export default {
     }
 
     let deleteTask = (val)=>{
-      console.log('HomePage -> addTask() : ' + val)
-      store.commit('addTask' , {
-        name : val,
-        completed: false
-      })
+      console.log('HomePage -> deleteTask() : ' + val)
+      store.commit('deleteTask' ,  val)
     }
+
+    let  list = store.state.todoList;
 
     return {
       addTask,
-      deleteTask
+      deleteTask,
+    list
     }
   }
 }
