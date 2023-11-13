@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Hello World</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script >
+    const app =  Vue.createApp({
+        data(){
+            return {
+                msg : "王欢"
+            }
+        },
+        beforeCreate(){
+            console.log('生命周期 : ' + 'beforeCreate');
+        },
+        created(){
+            console.log('生命周期 : ' + 'created');
+        },
+        beforeMount(){
+            console.log('生命周期 : ' + 'beforeMount');
+        },
+        mounted(){
+            console.log('生命周期 : ' + 'mounted');
+        },
+        beforeUnmount(){
+            console.log('生命周期 : ' + 'beforeUnmount');
+        },
+        unmounted(){
+            console.log('生命周期 : ' + 'unmounted');
+        },
+        beforeUpdate(){
+            console.log('生命周期 : ' + 'beforeUpdate');
+        },
+        updated(){
+            console.log('生命周期 : ' + 'updated');
+        },
+        template : `
+            <div> {{msg}} </div>
+        `
+    })
+    const vm = app.mount('#root');
+</script>
+</html>
