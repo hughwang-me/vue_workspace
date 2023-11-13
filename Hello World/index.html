@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Hello World</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script >
+   const app =  Vue.createApp({
+        data(){
+            return {
+                inputValue: '',
+                list : []
+            }
+        },
+        methods: {
+            add(){
+                this.list.push(this.inputValue);
+                this.inputValue = '';
+            }
+        },
+        mounted(){
+            console.log('mounted ok')
+            // setInterval(()=>{
+            //     this.a +=1;
+            // } , 1000)
+        },
+        // template : '<div>Hello ! {{a}}</div>'
+        template : `
+            <div> 
+                <input v-model="inputValue"/>
+                <button v-on:click="add">增加</button>
+                 
+                    <todo-list v-for="item of list" v-bind:text="item"></todo-list>
+                 
+            </div>
+
+        `
+    })
+    
+    app.component('todo-list' , {
+        props:['text'],
+        template : `<div> {{text}} <div>`
+    });
+
+    app.mount('#root');
+</script>
+</html>
