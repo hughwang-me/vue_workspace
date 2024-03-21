@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style >
+        /* 动画 */
+        @keyframes leftToRight {
+            0% {
+                transform: translateX(-100px)
+            }
+            50% {
+                transform: translateX(-50px)
+            }
+            0% {
+                transform: translateX(-0px)
+            }
+        }
+        .animation {
+            animation: leftToRight 5s;
+        }
+
+        /* 过渡 */
+        .transition {
+            transition: 3s background-color ease;
+        }
+        .blue {
+            background: blue;
+        }
+        .green {
+            background: green;
+        }
+
+    </style>
+    <title>Hello World</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script >
+    //  
+    const app =  Vue.createApp({
+        data(){
+            return {
+                animate: {
+                    animation: false,
+                    transition: true,
+                    green : false,
+                    blue: true
+                }
+            }
+        }, 
+        methods: {
+            clickAnimationBtn(){
+                this.animate.animation = !this.animate.animation;
+            },
+            clickTransitionBtn(){
+                this.animate.green = !this.animate.green;
+                this.animate.blue = !this.animate.blue;
+            }
+        },
+        template : `
+            <div>
+                <div :class="animate">你好你好你好你好你好你好你好</div>
+                <button @click="clickAnimationBtn">切换动画</button>
+                <button @click="clickTransitionBtn">切换过渡</button>
+            </div>
+        `
+    });
+    const vm = app.mount('#root');
+</script>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+        .red {
+            color: #e60e0e;
+        }
+        .green {
+            color: #10f15f;
+        }
+    </style>
+    <title>Hello World</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script >
+
+    // $emit
+    // v-model  modelValue  v-model:key=  update:modelValue  update:key
+
+    const app =  Vue.createApp({
+        data(){
+            return {
+                num: 1
+            }
+        },
+        methods:{
+            addNum(){
+                this.num +=1;
+            }
+        },
+        template : `
+            <div>
+               <first :num="num" @add-num="addNum"/>
+            </div>
+        `
+    });
+
+    app.component('first',{
+        props:{
+            num: Number
+        },
+        methods:{
+            clickNum(){
+                this.$emit('addNum');
+            }
+        },
+        template: `<div @click="clickNum">{{num}}</div>`
+    });
+ 
+
+    const vm = app.mount('#root');
+</script>
+</html>

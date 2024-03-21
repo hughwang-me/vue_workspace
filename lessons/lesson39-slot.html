@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Hello World</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script >
+    //slot 用标签内的内容 替换子组件的填充
+    // slot 标签无法添加事件 可以外层加一个div
+    // slot中使用的数据的作用域
+    // 父模板里使用的数据属性 都是父模版离得数据
+    //具名插槽 v-slot:header = #header <template>
+
+    const app =  Vue.createApp({
+        methods:{
+            addNum(){
+                alert('addNum');
+            }
+        },
+        template : `
+            <div>
+               <mySlot @add-num='addNum'>
+                    <div>点击</div>
+                </mySlot>
+                <hr>
+               <mySlot>
+                    <button>点击</button>
+                </mySlot>
+            </div>
+        `
+    });
+
+    app.component('mySlot',{
+        methods:{
+            clickNum(){
+                this.$emit('addNum');
+            }
+        },
+        template: `<div>
+                <span @click="clickNum">
+                    <slot>Default Value</slot>
+                    </span>
+            </div>`
+    });
+ 
+
+    const vm = app.mount('#root');
+</script>
+</html>

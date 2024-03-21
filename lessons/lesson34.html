@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+        .red {
+            color: #e60e0e;
+        }
+        .green {
+            color: #10f15f;
+        }
+    </style>
+    <title>Hello World</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script >
+
+    // 单向数据流的概念： 父组件可以给子组件传递参数，子组件可以使用传过来的参数，但是不可以修改父组件传过来的参数。
+    // No-props 属性 和 inheritAttrs:false
+     // $attrs.[属性]   v-bind="$attrs"
+
+    const app =  Vue.createApp({
+        data(){
+            return {
+                num: 1
+            }
+        },
+        template : `
+            <div>
+               <first :num="num"/>
+            </div>
+        `
+    });
+
+    app.component('first',{
+        props:{
+            num: Number
+        },
+        template: `<div>{{num}}  <br>  {{ typeof num}}</div>`
+    });
+
+    app.component('second',{
+        template: `<div>Second</div>`
+    });
+
+    const vm = app.mount('#root');
+</script>
+</html>

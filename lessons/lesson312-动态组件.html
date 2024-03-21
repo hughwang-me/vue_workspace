@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Hello World</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script >
+    // 动态组件：根据数据属性的变化，结合 component 组件 动态显示组件
+    // <keep-alive>
+    //异步组件：
+    const app =  Vue.createApp({
+        data(){
+            return {
+                currentCom: 'com1'
+            }
+        },
+         methods:{
+            clickChange(){
+                this.currentCom = this.currentCom === 'com1' ? 'com2' : 'com1'
+                console.log('currentCom -> ' + this.currentCom);
+            }
+         },
+        template : `
+            <div>
+                <keep-alive>
+                    <component :is="currentCom"/>
+                </keep-alive>
+                <button @click="clickChange">切换</button>
+                <async-component/>
+            </div>
+        `
+    });
+
+    app.component('com1',{
+        
+        template: `<div>
+                My Name is Com1 : <input/>
+            </div>`
+    });
+    app.component('com2',{
+        
+        template: `<div>
+                My Name is Com2 : <input/>
+            </div>`
+    });
+
+    app.component('async-component' , Vue.defineAsyncComponent(()=>{
+        return new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve({
+                    template:`<div>.sdsd</div>`
+                })
+            },4000)
+        })
+    }));
+ 
+
+    const vm = app.mount('#root');
+</script>
+</html>

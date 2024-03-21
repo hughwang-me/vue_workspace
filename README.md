@@ -20,6 +20,31 @@
 
 > v-on:click <=> @click
 
+> v-bind:prop <=> :prop
+
+> :[key] <=> 动态属性
+
+> 修饰符 @click.preve
+
+
+## computed 和 methods 和 watch 函数中方法区别
+
+``` 
+computed 中方法当计算依赖的内容发生变化时，才会重新执行计算
+
+methods 中方法当页面重新渲染，就会重新执行计算
+
+watch 的对象发生变化时候执行
+
+优先 computed
+
+```
+
+
+## v-if 和 v-show 和 v-else-if 和 v-else
+
+
+
 ### mvvm 模式
 
 ``` 

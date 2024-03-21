@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+        .red {
+            color: #e60e0e;
+        }
+        .green {
+            color: #10f15f;
+        }
+    </style>
+    <title>Hello World</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script >
+    const app =  Vue.createApp({
+        data(){
+            return {
+                msg : "王欢",
+                count : 3,
+                classString: 'red',
+                classObj: { red: true , green : false},
+                classArray: [ "red" , "green" , { ok : true} ],
+                styleString: 'font:22px;color:green;background:orange;',
+                styleObject: {
+                    font: 23,
+                    color : 'blue'
+                }
+            }
+        },
+        watch: {
+            // count 发生变化时候执行
+            count(prev , current){
+                console.log( prev , current);
+            }
+        },
+        template : `
+            <div v-bind:class="classArray">
+                 {{msg}}  <comm :class="classString"/> 
+
+                 <div :style="styleObject">样式测试</div>
+                 
+            </div>
+        `
+    })
+
+    app.component('comm' , {
+        template: `
+            <div :class="$attrs.class">one</div>
+            <div>two</div>
+        `
+    });
+    const vm = app.mount('#root');
+</script>
+</html>
